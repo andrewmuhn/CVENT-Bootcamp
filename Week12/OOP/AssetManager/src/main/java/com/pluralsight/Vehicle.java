@@ -42,16 +42,19 @@ public class Vehicle extends Asset {
         double cost = getOriginalCost();
         switch (year) {
             case 0,1,2,3:
-                cost *= .97;
+                cost -= cost * (.03 * year);
+                break;
             case 4,5,6:
-                cost *= .94;
+                cost -= cost * (.06 * year);
+                break;
             case 7,8,9,10:
-                cost *= .92;
+                cost -= cost * (.08 * year);
+                break;
             default:
-                cost -= 1000.00;
+                cost = 1000.00;
         }
-        if (odometer > 100_000 && !makeModel.contains("Toyota") || !makeModel.contains("Honda")) {
-            cost *= .25;
+        if (odometer > 100_000 && !makeModel.contains("Toyota") && !makeModel.contains("Honda")) {
+            cost *= .75;
         }
         return cost;
     }
