@@ -66,4 +66,15 @@ public class Card {
             valueToPoint.replace(CardValue.ACE, 1);
         }
     }
+
+    @Override
+    public String toString() {
+        if (!faceUp) {
+            return "Face Down";
+        }
+        return String.format("""
+                Suit: %s
+                Value: %s
+                """, ca);
+    }
 }

@@ -5,8 +5,14 @@ import java.util.ArrayList;
 public class Hand {
     private ArrayList<Card> cards;
 
+    private boolean bust;
+
     public Hand(ArrayList<Card> cards) {
         this.cards = cards;
+    }
+
+    public Hand() {
+        cards = new ArrayList<>();
     }
 
     public void deal (Card card) {
@@ -17,11 +23,13 @@ public class Hand {
         return cards.size();
     }
 
+
     public int getPointValue() {
         while (sumHand() > 21 && containsHighAces()) {
             Card ace = getFirstAce();
             ace.convertAce();
         }
+        setBust(sumHand() > 21);
         return sumHand();
     }
 
@@ -51,5 +59,17 @@ public class Hand {
                 .filter(card -> card.getValue() == CardValue.ACE && card.getPointValue() == 11)
                 .findFirst()
                 .orElse(null);
-}
+    }
+
+    public void setBust(boolean bust) {
+        this.bust = bust;
+    }
+
+    @Override
+    public String toString() {
+        String stringBuilder = "";
+        for (Card card: cards) {
+
+        }
+    }
 }
